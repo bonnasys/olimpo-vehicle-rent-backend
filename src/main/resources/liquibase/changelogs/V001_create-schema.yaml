@@ -24,6 +24,11 @@ databaseChangeLog:
                     nullable: false
                     unique: true
               - column:
+                  name: type
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
                   name: phone
                   type: varchar(60)
                   constraints:

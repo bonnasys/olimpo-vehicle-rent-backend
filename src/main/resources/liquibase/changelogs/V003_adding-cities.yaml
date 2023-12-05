@@ -1,0 +1,29 @@
+databaseChangeLog:
+  - changeSet:
+      id: 3
+      author: gabriel.rodrigues@bonnasys.com.br
+      changes:
+        - insert:
+            tableName: cities
+            columns:
+              - column:
+                  name: id
+                  value: "bb685da8-a490-4b47-92ac-59d48ccdaa4f"
+              - column:
+                  name: name
+                  value: "Sumaré"
+              - column:
+                  name: state
+                  value: "SP"
+        - insert:
+            tableName: cities
+            columns:
+              - column:
+                  name: id
+                  value: "adfbaa2d-10d2-4192-be0f-7b7e9663b366"
+              - column:
+                  name: name
+                  value: "Campinas"
+              - column:
+                  name: state
+                  value: "SP"

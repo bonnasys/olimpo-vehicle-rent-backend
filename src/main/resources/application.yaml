@@ -11,13 +11,14 @@ spring:
       pool-name: vehicle-rent-master
   liquibase:
     change-log: liquibase/master.yaml
+    enabled: ${liquibase.enabled:true}
   jpa:
     open-in-view: false
     show-sql: true
     hibernate:
-      ddl-auto: none
+      ddl-auto: ${mysql.ddl-auto}
     properties:
-#      "[hibernate.dialect]": org.hibernate.dialect.MySQL8Dialect
+      #      "[hibernate.dialect]": org.hibernate.dialect.MySQL8Dialect
       "[hibernate.generate_statistics]": false
       "[hibernate.connection.provider_disables_autocommit]": true
       "[jakarta.persistence.sharedCache.mode]": ENABLE_SELECTIVE
