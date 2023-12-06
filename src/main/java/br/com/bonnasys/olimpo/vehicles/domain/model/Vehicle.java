@@ -17,8 +17,9 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
-import reserves.domain.model.Reserve;
+import br.com.bonnasys.olimpo.reserves.domain.model.Reserve;
 
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -46,12 +47,8 @@ public class Vehicle {
             foreignKey = @ForeignKey(name = "fk_city_vehicle"))
     private City city;
 
-
-    @OneToMany
-    @JoinColumn(name = "vehicle_id",
-            referencedColumnName = "id",
-            foreignKey = @ForeignKey(name = "fk_vehicle_reserves"))
-    private Set<Reserve> reserves;
+    @OneToMany(mappedBy = "vehicle")
+    private List<Reserve> reserves;
 
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(

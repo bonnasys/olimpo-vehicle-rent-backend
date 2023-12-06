@@ -1,4 +1,4 @@
-package reserves.domain.model;
+package br.com.bonnasys.olimpo.reserves.domain.model;
 
 import br.com.bonnasys.olimpo.users.domain.model.Client;
 import br.com.bonnasys.olimpo.vehicles.domain.model.Vehicle;
@@ -15,30 +15,25 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
-import java.util.UUID;
+import java.time.OffsetDateTime;
 
 @Getter
 @Setter
-@Table(name = "reserves")
 @Entity
+@Table(name = "reserves")
 public class Reserve {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "id")
-    private UUID id;
-
-    @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
-    private LocalDateTime startDate;
-
-    @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
-    private LocalDateTime endDate;
+    private String id;
 
     @ManyToOne
-    @JoinColumn(name = "vehicle_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_reserve_vehicle"))
+    @JoinColumn(name = "id_vehicle",
+            referencedColumnName = "id",
+            foreignKey = @ForeignKey(name = "fk_reserve_vehicle"))
     private Vehicle vehicle;
-
     @ManyToOne
-    @JoinColumn(name = "client_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_reserve_client"))
+    @JoinColumn(name = "id_client",
+            referencedColumnName = "id",
+            foreignKey = @ForeignKey(name = "fk_reserve_client"))
     private Client client;
 }
