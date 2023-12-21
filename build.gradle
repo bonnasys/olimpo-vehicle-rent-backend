@@ -73,8 +73,8 @@ tasks.named('test') {
 }
 
 sonar {
-    properties {
-        property "sonar.projectKey", "bonnasys_olimpo-vehicle-rent-backend_AYyOxY1eOVLDaFsCT2p"
-        property "sonar.projectName", "olimpo-vehicle-rent-backend"
-    }
+  properties {
+    property "sonar.projectKey", "bonnasys_olimpo-vehicle-rent-backend_AYyOxY1eOVLDaFsCT2pe"
+    property "sonar.projectName", "olimpo-vehicle-rent-backend"
+  }
 }
