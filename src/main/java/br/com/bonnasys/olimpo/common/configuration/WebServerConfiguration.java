@@ -41,20 +41,17 @@ public class WebServerConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> {
-                            request.requestMatchers(
-                                            antMatcher("/users/**"),
-                                            antMatcher("/authentication/**"),
-                                            antMatcher("/swagger-ui/**"),
-                                            antMatcher("/swagger/**"),
-                                            antMatcher(HttpMethod.GET, "/vehicles/**"),
-                                            antMatcher("/proxy/**"),
-                                            antMatcher("/v3/api-docs/**"))
-                                    .permitAll();
-                            request.anyRequest().authenticated();
-                        }
-
-                )
-
+                    request.requestMatchers(
+                                    antMatcher("/users/**"),
+                                    antMatcher("/authentication/**"),
+                                    antMatcher("/swagger-ui/**"),
+                                    antMatcher("/swagger/**"),
+                                    antMatcher(HttpMethod.GET, "/vehicles/**"),
+                                    antMatcher("/proxy/**"),
+                                    antMatcher("/v3/api-docs/**"))
+                            .permitAll();
+                    request.anyRequest().authenticated();
+                })
                 .sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))
                 .authenticationProvider(authenticationProvider())
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
@@ -74,4 +71,5 @@ public class WebServerConfiguration {
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
+
 }

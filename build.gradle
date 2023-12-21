@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.2.0'
     id 'io.spring.dependency-management' version '1.1.4'
+    id "org.sonarqube" version "4.4.1.3373"
 }
 
 group = 'br.com.bonnasys'
@@ -33,12 +34,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
-    implementation('org.springframework.boot:spring-boot-starter-web') {
-        exclude module: 'spring-boot-starter-tomcat'
-    }
-    implementation('org.springframework.boot:spring-boot-starter-undertow') {
-        exclude group: 'io.undertow', module: 'undertow-websockets-jsr'
-    }
+    implementation('org.springframework.boot:spring-boot-starter-web')
     implementation "org.springdoc:springdoc-openapi-starter-webmvc-api:${starterWebMvc}"
     implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:${starterWebMvc}"
     implementation 'org.liquibase:liquibase-core'
@@ -74,4 +70,11 @@ dependencyManagement {
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+sonar {
+    properties {
+        property "sonar.projectKey", "bonnasys_olimpo-vehicle-rent-backend_AYyOuQZNOVLDaFsCT2pA"
+        property "sonar.projectName", "olimpo-vehicle-rent-backend"
+    }
 }

@@ -30,6 +30,10 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                                     @NonNull HttpServletResponse response,
                                     @NonNull FilterChain filterChain)
             throws ServletException, IOException {
+        if (request.getServletPath().contains("authentication")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
         final String authHeader = request.getHeader("Authorization");
         final String jwt;
         final String userEmail;
@@ -42,7 +46,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         if (StringUtils.isNotEmpty(userEmail) && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = userService.getUserDetails()
                     .loadUserByUsername(userEmail);
-            if (jwtService.tokenIsValid(jwt, userDetails)) {
+            boolean tokenIsValid = jwtService.tokenIsValid(jwt, userDetails);
+            if (tokenIsValid) {
                 SecurityContext context = SecurityContextHolder.createEmptyContext();
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                         userDetails, null, userDetails.getAuthorities());
