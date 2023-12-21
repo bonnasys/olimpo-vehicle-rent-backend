@@ -74,7 +74,7 @@ tasks.named('test') {
 
 sonar {
     properties {
-        property "sonar.projectKey", "bonnasys_olimpo-vehicle-rent-backend_AYyOuQZNOVLDaFsCT2pA"
+        property "sonar.projectKey", "bonnasys_olimpo-vehicle-rent-backend_AYyOxY1eOVLDaFsCT2p"
         property "sonar.projectName", "olimpo-vehicle-rent-backend"
     }
 }
